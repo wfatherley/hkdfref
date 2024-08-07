@@ -7,7 +7,7 @@ from math import ceil
 from typing import Any, Callable
 
 
-logger = getLogger(__name__)
+logger = getLogger(__name__[1:])
 
 
 default_hash = hashlib.sha512
@@ -39,7 +39,9 @@ def hkdf(*ikm: bytes, **kwargs: Any) -> bytes:
         prk = extract(salt, *ikm, hash=extract_hash)
     else:
         prk = b"".join(ikm)
-    return expand(prk, info, l, expand_hash)
+    return expand(
+        prk, info, l, expand_hash, return_all=kwargs.get("return_all", False)
+    )
 
 
 def expand(
