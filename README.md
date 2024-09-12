@@ -9,11 +9,11 @@ The HKDF is modular, consisting of
  - *extract* (the function `hkdfref.extract`)
  - and *expand* (the function `hkdfref.expand`) parts.
  
-In the *extract part*, a fixed-length psuedorandom key is extracted from the *initial keying material*. The extract part aims to increase the informational uniformity of the inital keying material. Scenarios where this step is helpful in particular includes: when an attacker might have partial knowledge or control of these input materials. Scenarios where this step is less helpful includes: the initial keying material is of sufficiently high informational uniformity. The RFC describes the extract part as optional.
+In the *extract part*, a fixed-length psuedorandom key is extracted from the *initial keying material*. The extract part aims to increase informational uniformity of the inital keying material. Scenarios where this step is helpful in particular include: when an attacker might have partial knowledge or control of these input materials. Scenarios where this step is less helpful include: the initial keying material is of sufficiently high informational uniformity. The RFC describes the extract part as optional.
  
 In the *expand part*, the fixed-length pseudorandom key is exapnded into several additional pseudorandom keys. These *several additional pseudorandom keys* are the output of HKDF. The aim of this part is to ensure the output keys are suitable for a specific cyrptographic algorithm.
 
-The differentiation of extract and expand parts is viewed in this RFC as circumventing possible shortcomings in KDF design. Further, the RFC's stated goal is to "accomodate a whide range of KDF requirements while minimizing the assumptions about the underlying hash function". The two parts can be executed together as described, using `hkdfref.hkdf`.
+The differentiation of extract and expand parts is viewed in this RFC as circumventing possible shortcomings in KDF design. Further, the RFC's stated goal is to "accomodate a wide range of KDF requirements while minimizing the assumptions about the underlying hash function". The two parts can be executed together as described, using `hkdfref.hkdf`.
 
 ## Usage
 A simple example:
